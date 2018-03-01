@@ -294,8 +294,8 @@ export function sequelizeConnection({
       if (!values[0]) {
         fullCount = 0;
       }
-
-      if ((args.first || args.last) && (fullCount === null || fullCount === undefined)) {
+        // I want fullCount even we don't specify first/last params
+      if (fullCount === null || fullCount === undefined) {
         // In case of `OVER()` is not available, we need to get the full count from a second query.
         const options = await Promise.resolve(before({
           where: argsToWhere(args)
